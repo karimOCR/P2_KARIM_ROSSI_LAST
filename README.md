@@ -1,8 +1,8 @@
 #**Projet 2 - Application Webscraping**
 :point_down:    :point_down:    :point_down:
 
-![GitHub Logo](openclassroom/projet2/scraping_website_screenshot.png)
-Format: ![Alt Text](url)
+![GitHub Logo](scraping_website_screenshot.png)
+
 
 ###### Programme Python pour récupérer des données de livres depuis un site internet de vente en ligne books.toscrape.com
 ##**Préambule**
