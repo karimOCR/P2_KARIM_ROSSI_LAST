@@ -1,65 +1,73 @@
-"""Defintion de fonctions pour les catégories, et le site books.toscrape.com"""
+"""Appels de fonctions pour une catégorie"""
 import requests
-from bs4 import beautifulsoup
-import csv
-import scraped_book
+from bs4 import BeautifulSoup
+import scraped_book_with_function as sbwf
+#from scraped_book_with_function import * #danger car possibilité de conflit
 
-def get_url():
-    requests.get
+#Création d'une nouvelle soup_categories dans laquelle on retrouve que les urls des categories
+#def get_soup_categories_urls_list(soup):
+   # soup_categories_urls_list= soup.find_all(class_="nav")
+ #   return (soup_categories_urls_list)
+#print(get_soup_categories_urls_list(soup))
 
+url_category= 'http://books.toscrape.com/catalogue/category/books/fiction_10/index.html'
+page = requests.get(url_category)
+soup = BeautifulSoup(page.content, 'html.parser')
+
+
+def get_all_categories_urls(soup):
+    all_categories_urls=soup.find_all("a")
+    return all_categories_urls
+print(get_all_categories_urls(soup))
+
+
+for link in soup.find_all('a', class_=""):
+    print(link.get('href'))
+
+
+
+#urlbooks= soup.find_all("article", class_="product_pod")
+#print(urlbooks)
+
+#for nbre_page in range(0,3):
+#    soup.find_all("a")
 
 
 
 """
-def get_book(url):
-    soup=get_page(url)
-    return {
-        "title": get_title(),
-        "UPC": get_universal_product_code(),
-        "Price_without_taxes": get_price_excluding_tax(),
-        "Price_with_taxes": get_price_including_tax(),
+h3list=soup.find_all("h3")
+#print (dir (h3))
+for h3tag in h3list:
+    print(h3tag)
+    #anchor=h3tag.text.replace ("<h3>", "")
 
-
-
-    }
 """
 
-"""Définition de fonctions pour extraire les informations d'un livre"""
+"""
 
-def get_universal_product_code():
-    return soup.select("td")[0].text
-
-def get_product_page_url():
-    return get.requests(url)
-
-def get_title():
-    return soup.find_all("h1")
-
-def get_price_including_tax():
-    return soup.select("td")[2].text
-
-def get_price_excluding_tax():
-    return soup.select("td")["3"].text
+#Appels des fonctions pour extraire les informations d'un livre
+sbwf.get_product_type(soup)
+sbwf.get_title(soup)
+sbwf.get_price_incl_tax(soup)
+sbwf.get_universal_product_code(soup)
+sbwf.get_notation(soup)
+"""
 
 
 
-def get_category(url):
 
 #def get_category_list():
 
 #def get_site(url):
     #Obtenir les données de la page d'accueil
-    page_accueil=get_page(http://books.toscrape.com/index.html)
+    #page_accueil=get_page(http://books.toscrape.com/index.html)
     #Catégories_urls = Extract la liste des urls de chaque catégories dans la page d'accueil
     #Books_urls = Extract la liste des urls de chaque livres dans une
 
-import requests
-from bs4 import BeautifulSoup
-import csv
 
 
 
-def main(url):
+"""def main(url):
     for csv in etl_list_names_categories(url):
         creation_csv(csv)
 
@@ -97,4 +105,40 @@ def etl_list_names_categories(url_names_categories):#récupère les noms des cat
         last_name_without_number = name[:-3]  # on enlève les 3 derniers caractères de cette partie de la liste
         last_names_without_number.append(last_name_without_number)
     list_names = first_names_without_number + last_names_without_number  # on a enfin notre liste avec les noms de catégories!
-    return list_names
+    return list_names"""
+
+
+
+
+
+"""
+dico_data_book = [{'Titre': titre[0].text,
+                   'Universal product code': upc,
+                   'Prix avec taxes': price_incl_tax,
+                   'Prix sans taxes': price_excl_tax,
+                   'Nombre disponible': num_available,
+                   'Description du livre': product_description,
+                   'Categorie': category,
+                   'Note sur 5': get_notation(soup),
+                   'Lien premiere page de couverture': image_url}]
+
+csv_file = "table_data_book.csv"
+
+with open(csv_file, 'a') as csvfile:
+    writer = csv.DictWriter(csvfile,
+                            fieldnames=['Titre', 'Universal product code', 'Prix avec taxes', 'Prix sans taxes',
+                                        'Nombre disponible',
+                                        'Description du livre', 'Categorie', 'Note sur 5',
+                                        'Lien premiere page de couverture'])
+    writer.writeheader()
+    for data in dico_data_book:
+        writer.writerow(data)
+
+"""
+
+#je veux recuperer les url de chaque livre
+
+def get_urls_all_c(soup):
+    urls_all_categories=soup.find_all("a", class_="side_categories")
+    return urls_all_categories
+print(get_urls_all_categories(soup))

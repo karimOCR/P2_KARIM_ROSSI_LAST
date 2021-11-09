@@ -37,15 +37,23 @@ print(product_description)
 category = soup.select("a")[3].text
 print(category)
 # ETL EXTRACT review_rating
-def get_notation(rev):
-    if rev[1] == 'Four': return 4
-    elif rev[1] == 'Three': return 3
-    elif rev[1] == 'five': return 5
-    elif rev[1] == 'two': return 2
-    elif rev[1] == 'one': return 1
+def get_notation(soup):
+    review = soup.find_all("p", class_="star-rating")[0].get("class")
 
-review = soup.find_all("p", class_="star-rating")[0].get("class")
-print(get_notation(review))
+    if review[1] == 'Four':
+        return 4
+    elif review[1] == 'Three':
+        return 3
+    elif review[1] == 'Five':
+        return 5
+    elif review[1] == 'Two':
+        return 2
+    elif review[1] == 'One':
+        return 1
+    else:
+        return 0
+print(get_notation(soup))
+
 
 
 
@@ -67,7 +75,7 @@ dico_data_book = [{'Titre': titre[0].text,
                    'Nombre disponible': num_available,
                    'Description du livre': product_description,
                    'Categorie': category,
-                   'Note sur 5': get_notation(review),
+                   'Note sur 5': get_notation(soup),
                    'Lien premiere page de couverture': image_url}]
 
 csv_file = "table_data_book.csv"
