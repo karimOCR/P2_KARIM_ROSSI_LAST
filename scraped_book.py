@@ -7,7 +7,7 @@ import csv
 # import scraped_book
 # print(module_scraped_book)
 # ETL Extract url
-url = 'http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html'
+url = 'http://books.toscrape.com/catalogue/the-silent-wife_83/index.html'
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 

@@ -1,77 +1,101 @@
 """Appels de fonctions pour une catégorie"""
+import csv
 import requests
 from bs4 import BeautifulSoup
 import scraped_book_with_function as sbwf
 
-url_category= 'http://books.toscrape.com/catalogue/category/books/fiction_10/index.html'
+
+url_category = 'http://books.toscrape.com/catalogue/category/books/nonfiction_13/index.html'
 page = requests.get(url_category)
 soup = BeautifulSoup(page.content, 'html.parser')
 
-#ici on retrouve les urls des livres existants dans la rubrique d'une categorie
+
+# ici on retrouve les urls des livres existants dans la rubrique d'une categorie
 def get_books_links(soup):
     books_links = []
     temp = soup.select("h3")
     for link in temp:
-        anchors=link.select("a")
+        anchors = link.select("a")
         for anchor in anchors:
-            books_links.append("http://books.toscrape.com/" + anchor.get ("href").replace('../', ''))
+            books_links.append("http://books.toscrape.com/catalogue/" + anchor.get("href").replace('../', ''))
+
     return books_links
 
-#ici on extrait le lien next et on denombre le nombre de page par des boucles
 
-print (url_category)
-print(get_books_links(soup))
+# ici on extrait le lien next et on denombre le nombre de page par des boucles
+
+#print(url_category)
+#print(get_books_links(soup))
 
 next_page = soup.find("li", "next")
 
-while next_page:
-    next_page_url = url_category.replace("index.html", "") + next_page.a["href"]
-    print (next_page_url)
-    actual_page_in_cat = requests.get(next_page_url)
-    soup = BeautifulSoup(actual_page_in_cat.content, 'html.parser')
-    next_page = soup.find("li", "next")
-    print (get_books_links(soup))
+csv_file = "All_books_of_category.csv"
+with open(csv_file, 'w') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=['Titre', 'Universal product code', 'Prix avec taxes', 'Prix sans taxes',
+                                            'Nombre disponible',
+                                            'Description du livre', 'Categorie', 'Note sur 5',
+                                            'Lien premiere page de couverture'])
+    writer.writeheader()
 
-"""
-request = requests.get(next_page_url)
-print(requests)
-soup_books = soup.find_all("article", "product_pod")"""
+    for book_link in get_books_links(soup):
+        page_of_book = requests.get(book_link)
+        book_soup = BeautifulSoup(page_of_book.content, 'html.parser')
 
+        dico_data_book = {'Titre': sbwf.get_title(book_soup),
+                           'Universal product code': sbwf.get_universal_product_code(book_soup),
+                           'Prix avec taxes': sbwf.get_price_incl_tax(book_soup),
+                           'Prix sans taxes': sbwf.get_price_excl_tax(book_soup),
+                           'Nombre disponible': sbwf.get_num_available(book_soup),
+                           'Description du livre': sbwf.get_product_description(book_soup),
+                           'Categorie': sbwf.get_category(book_soup),
+                           'Note sur 5': sbwf.get_notation(book_soup),
+                           'Lien premiere page de couverture': sbwf.get_image_url(book_soup)}
+        writer.writerow(dico_data_book)
 
-"""
-urls = url.replace("index.html", "")
     while next_page:
-        url_next_page = urls + next_page.a["href"]
-        request = requests.get(url_next_page)
-        html = request.content
-        soup = BeautifulSoup(html, features="html.parser")
-        soup_books = soup.find_all("article", "product_pod")
-        for i in soup_books:
-            url_book = i.a["href"].replace("../", "")
-            urls_books.append(url_book)
+        next_page_url = url_category.replace("index.html", "") + next_page.a["href"]
+        #print(next_page_url)
+        actual_page_in_cat = requests.get(next_page_url)
+        soup = BeautifulSoup(actual_page_in_cat.content, 'html.parser')
         next_page = soup.find("li", "next")
-    print(urls_books, category)
-    #return urls_books, category
-"""
 
-"""def get_books_url_list(soup):
-    book_url_list = soup.find_all("a", class_=)
-    return book_url_list
-print(get_books_url_list(soup))
-"""
+        for book_link in get_books_links(soup):
+            page_of_book = requests.get(book_link)
+            book_soup = BeautifulSoup(page_of_book.content, 'html.parser')
 
-"""extraction de toutes les pages d'une catégorie"""
-"""def get_all_categories_pages(category):
+            dico_data_book = {'Titre': sbwf.get_title(book_soup),
+                       'Universal product code': sbwf.get_universal_product_code(book_soup),
+                       'Prix avec taxes': sbwf.get_price_incl_tax(book_soup),
+                       'Prix sans taxes': sbwf.get_price_excl_tax(book_soup),
+                       'Nombre disponible': sbwf.get_num_available(book_soup),
+                       'Description du livre': sbwf.get_product_description(book_soup),
+                       'Categorie': sbwf.get_category(book_soup),
+                       'Note sur 5': sbwf.get_notation(book_soup),
+                       'Lien premiere page de couverture': sbwf.get_image_url(book_soup)}
+            writer.writerow(dico_data_book)
 
-    i = 0
-    while True:
-        i = i + 1
-        if i == 1:
-            url_general= "http://books.toscrape.com/catalogue/category/books/" + category + "/index.html"
-            return url_general
-        else:
-            url_general= "http://books.toscrape.com/catalogue/category/books/" + category + "/page-" + str(i) + ".html"  # concatenar
-        page_general = requests.get(url_general)
-        if page_general.status_code != 200:
-            break
-    return url_general"""
+def write_in_file():
+    csv_file = "All_books_of_category.csv"
+    with open(csv_file, 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=['Titre', 'Universal product code', 'Prix avec taxes', 'Prix sans taxes',
+                                            'Nombre disponible',
+                                            'Description du livre', 'Categorie', 'Note sur 5',
+                                            'Lien premiere page de couverture'])
+        writer.writeheader()
+
+        #for data in dico_data_book:
+            #writer.writerow(data)
+
+
+
+
+        #writer.writerow(get_books_links(soup))
+#all_books_of_category = get_books_links(soup)
+#print(all_books_of_category)
+
+
+
+
+
+
+
