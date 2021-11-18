@@ -2,7 +2,7 @@
 import csv
 import requests
 from bs4 import BeautifulSoup
-import P2_04_scraped_book_with_function as sbwf
+import scraped_book_with_function as sbwf
 
 
 url_category = 'http://books.toscrape.com/catalogue/category/books/art_25/index.html'
