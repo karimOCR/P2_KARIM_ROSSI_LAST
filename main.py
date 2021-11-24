@@ -5,8 +5,9 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import os
-from scraped_category import *
-import scraped_book_with_function as sbwf
+#from scraped_category import *
+#import scraped_book_with_function as sbwf
+import P2_01_scraped_book_and_category_wiith_functions as sbwf
 import time
 
 start = time.time()
