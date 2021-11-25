@@ -1,6 +1,9 @@
 """Defintion de fonctions pour les données d'un livre"""
 
 """ Creation et importer ses propres modules Python"""
+import requests
+from bs4 import BeautifulSoup
+import csv
 
 # Module traitant des infos dans un livre
 # url='http://books.toscrape.com/catalogue/sapiens-a-brief-history-of-humankind_996/index.html'
@@ -87,9 +90,9 @@ def export_csv():
 #import scraped_book_with_function as sbwf
 
 
-url_category = 'http://books.toscrape.com/catalogue/category/books/art_25/index.html'
-page = requests.get(url_category)
-soup = BeautifulSoup(page.content, 'html.parser')
+#url_category = 'http://books.toscrape.com/catalogue/category/books/art_25/index.html'
+#page = requests.get(url_category)
+#soup = BeautifulSoup(page.content, 'html.parser')
 
 
 # ici on retrouve les urls des livres existants dans la rubrique d'une categorie
@@ -108,7 +111,7 @@ def get_books_links(soup):
 
 #print(url_category)
 #print(get_books_links(soup))
-
+"""
 next_page = soup.find("li", "next")
 
 csv_file = "P2_05_all_books_of_category.csv"
@@ -154,7 +157,7 @@ with open(csv_file, 'w') as csvfile:
                        'Note sur 5': sbwf.get_notation(book_soup),
                        'Lien premiere page de couverture': sbwf.get_image_url(book_soup)}
             writer.writerow(dico_data_book)
-
+"""
 def write_in_file():
     csv_file = "P2_05_all_books_of_category.csv"
     with open(csv_file, 'w') as csvfile:

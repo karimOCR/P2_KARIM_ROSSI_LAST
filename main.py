@@ -63,7 +63,7 @@ for each_url_of_category in list_url:
     writer.writeheader()
 
     """ici on crée la soupe la premiere page d'une catégorie"""
-    for book_link in get_books_links(category_soup):
+    for book_link in sbwf.get_books_links(category_soup):
         page_of_book = requests.get(book_link)
         book_soup = BeautifulSoup(page_of_book.content, 'html.parser')
 
@@ -95,7 +95,7 @@ for each_url_of_category in list_url:
         soup = BeautifulSoup(actual_page_in_cat.content, 'html.parser')
         next_page = soup.find("li", "next")
 
-        for book_link in get_books_links(soup):
+        for book_link in sbwf.get_books_links(soup):
             page_of_book = requests.get(book_link)
             book_soup = BeautifulSoup(page_of_book.content, 'html.parser')
 
