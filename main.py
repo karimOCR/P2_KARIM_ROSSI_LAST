@@ -5,24 +5,18 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import os
-#from scraped_category import *
-#import scraped_book_with_function as sbwf
+
 import P2_01_scraped_book_and_category_wiith_functions as sbwf
 import time
 
 start = time.time()
-print("hello")
+print("Démarrage du programme avec compteur de temps affiché en fin de process")
 
 
 url_all_categories = "http://books.toscrape.com/index.html"
 page = requests.get(url_all_categories)
 soup = BeautifulSoup(page.content, 'html.parser')
 
-"""P2_cover_images_directory = "./P2_06_scraped_Books_images"
-if not os.path.exists(P2_cover_images_directory):
-    os.mkdir(P2_cover_images_directory)
-reponse = requests.get(cover_book, allow_redirects=True)
-picture_file = ()"""
 
 """Création du dossier dans lequel on va stocker les miniatures"""
 P2_cover_images_directory = "./P2_06_scraped_books_images"
@@ -62,7 +56,7 @@ for each_url_of_category in list_url:
                                                  'Categorie', 'Note sur 5', 'Lien premiere page de couverture'])
     writer.writeheader()
 
-    """ici on crée la soupe la premiere page d'une catégorie"""
+    """ici on crée la soupe de la premiere page d'une catégorie"""
     for book_link in sbwf.get_books_links(category_soup):
         page_of_book = requests.get(book_link)
         book_soup = BeautifulSoup(page_of_book.content, 'html.parser')
@@ -85,6 +79,7 @@ for each_url_of_category in list_url:
                           'Note sur 5': sbwf.get_notation(book_soup),
                           'Lien premiere page de couverture': sbwf.get_image_url(book_soup)}
         writer.writerow(dico_data_book)
+
 
     """ici on recupère la soupe des pages suivantes de la catégorie"""
     next_page = category_soup.find("li", "next")
