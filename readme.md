@@ -34,8 +34,17 @@ _$ python main.py_
 ***
 ## **lancement de l’application de WebScraping**
 ##### Ce programme a été réalisé et testé sous __UBUNTU 20.04.2 LTS__ et __PYTHON 3__
-exemple: Executez la commande telnet mapscii.me pour commencer ensuite [...]
-Ensuite vous pouvez montrer ce que vous obtenez au final...
+Pour cela, procédons par cloner le Commencer par initialiser le dépôt local
+
+_$ git init
+
+_$ git remote add OC https://github.com/karimOCR/P2_ROSSI_KARIM.git
+
+_$ git branch -M main
+
+_$ git pull OC main
+
+
 ## **Execution du code d’application**
 ###### Dites comment faire pour lancer votre projet
 ***
