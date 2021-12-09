@@ -6,7 +6,7 @@
 
 ###### Programme Python pour récupérer des données de livres depuis un site internet de vente en ligne books.toscrape.com
 ## **Préambule**
-###### Ce readme.md a pour objectif de décrire comment créer et activer l'environnement virtuel, puis exécuter le code d'application ;
+###### Ce readme.md a pour objectif de décrire comment créer et activer l'environnement virtuel, cloner l'application présent sur un dépôt distant puis exécuter le code d'application ;
 
 ### **Pré-requis**
 
@@ -30,14 +30,28 @@ _$ source venv/bin/activate_
 
 _$ pip install –r requirements.txt_
 
-_$ python main.py_
+_$ deactivate (une fois l'execution de l'application fini)
 ***
-## **lancement de l’application de WebScraping**
+## **Récupération de l’application de WebScraping**
 ##### Ce programme a été réalisé et testé sous __UBUNTU 20.04.2 LTS__ et __PYTHON 3__
-exemple: Executez la commande telnet mapscii.me pour commencer ensuite [...]
-Ensuite vous pouvez montrer ce que vous obtenez au final...
+Pour cela, Commençons par initialiser le dépôt local et ensuite procédons par le clonage du dépôt distant.
+
+_$ git init
+
+_$ git remote add OC https://github.com/karimOCR/P2_ROSSI_KARIM.git
+
+_$ git branch -M main
+
+_$ git pull OC main
+
+
 ## **Execution du code d’application**
-###### Dites comment faire pour lancer votre projet
+###### Aller dans le Terminal, se placer sous le repertoire /P2_ROSSI_KARIM et executer le script main.py
+
+_$ cd P2_ROSSI_KARIM
+
+_$ python main.py
+
 ***
 ## Développé avec
 ###### Oracle VirtualBox, UBUNTU version…., PYcharm, Git et GitHub.
