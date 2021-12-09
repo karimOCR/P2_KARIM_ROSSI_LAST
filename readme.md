@@ -6,7 +6,7 @@
 
 ###### Programme Python pour récupérer des données de livres depuis un site internet de vente en ligne books.toscrape.com
 ## **Préambule**
-###### Ce readme.md a pour objectif de décrire comment créer et activer l'environnement virtuel, puis exécuter le code d'application ;
+###### Ce readme.md a pour objectif de décrire comment créer et activer l'environnement virtuel, cloner l'application présent sur un dépôt distant puis exécuter le code d'application ;
 
 ### **Pré-requis**
 
