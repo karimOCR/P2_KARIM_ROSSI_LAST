@@ -52,6 +52,9 @@ _$ cd P2_ROSSI_KARIM
 
 _$ python main.py
 
+Une fois l'éxecution de l'application terminée (prévoir 25 minutes), 2 dossiers sont crées dans lesquels
+l'utilisateur retrouve respectivement les couvertures de tous les livres et dans le second dossier les tableurs de chaque catégories.
+Enfin, l'utilisateur doit ouvrir le tableur préalablement, et procéder à l'import d'un fichier .csv.
 ***
 ## Développé avec
 ###### Oracle VirtualBox, UBUNTU version…., PYcharm, Git et GitHub.
@@ -59,8 +62,6 @@ _$ python main.py
 * __Nom de l’appareil :__ _karim_VirtualBox_
 * __Virtualisation :__ _Oracle VirtualBox_
 * __Editeur de code :__ _PYcharm_
-## Versions
-###### *voir après le push*
 ## Auteurs et contributeurs
 * Karim ROSSI alias @karimOCR
 * Elie TERRIEN mentor and contributor
