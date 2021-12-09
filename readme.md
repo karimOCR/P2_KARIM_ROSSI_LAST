@@ -30,7 +30,7 @@ _$ source venv/bin/activate_
 
 _$ pip install –r requirements.txt_
 
-_$ python main.py_
+_$ deactivate (une fois l'execution de l'application fini)
 ***
 ## **Récupération de l’application de WebScraping**
 ##### Ce programme a été réalisé et testé sous __UBUNTU 20.04.2 LTS__ et __PYTHON 3__
