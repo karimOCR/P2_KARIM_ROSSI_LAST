@@ -32,7 +32,7 @@ _$ pip install –r requirements.txt_
 
 _$ python main.py_
 ***
-## **lancement de l’application de WebScraping**
+## **Récupération de l’application de WebScraping**
 ##### Ce programme a été réalisé et testé sous __UBUNTU 20.04.2 LTS__ et __PYTHON 3__
 Pour cela, Commençons par initialiser le dépôt local et ensuite procédons par le clonage du dépôt distant.
 
@@ -46,7 +46,12 @@ _$ git pull OC main
 
 
 ## **Execution du code d’application**
-###### Dites comment faire pour lancer votre projet
+###### Aller dans le Terminal, se placer sous le repertoire /P2_ROSSI_KARIM et executer le script main.py
+
+_$ cd P2_ROSSI_KARIM
+
+_$ python main.py
+
 ***
 ## Développé avec
 ###### Oracle VirtualBox, UBUNTU version…., PYcharm, Git et GitHub.
