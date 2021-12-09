@@ -34,7 +34,7 @@ _$ python main.py_
 ***
 ## **lancement de l’application de WebScraping**
 ##### Ce programme a été réalisé et testé sous __UBUNTU 20.04.2 LTS__ et __PYTHON 3__
-Pour cela, procédons par cloner le Commencer par initialiser le dépôt local
+Pour cela, Commençons par initialiser le dépôt local et ensuite procédons par le clonage du dépôt distant.
 
 _$ git init
 
