@@ -44,6 +44,9 @@ _$ git branch -M main
 
 _$ git pull OC main
 
+ou faire :
+
+_$ git clone "URL du dépôt"
 
 ## **Execution du code d’application**
 ###### Aller dans le Terminal, se placer sous le repertoire /P2_ROSSI_KARIM et executer le script main.py
