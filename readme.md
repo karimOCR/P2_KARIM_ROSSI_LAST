@@ -49,7 +49,7 @@ ou faire :
 _$ git clone "URL du dépôt"
 
 ## **Execution du code d’application**
-###### Aller dans le Terminal, se placer sous le repertoire /P2_ROSSI_KARIM et executer le script main.py
+###### Aller dans le Terminal, se placer sous le repertoire /P2_ROSSI_KARIM et executer le script main.py. Ne pas oublier d'activer l'environnement virtuel.
 
 _$ cd P2_ROSSI_KARIM
 
